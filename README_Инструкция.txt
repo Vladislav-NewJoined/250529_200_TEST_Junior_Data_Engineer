@@ -47,7 +47,7 @@ Email: sozin.vladislav@mail.ru
 
 ### 3. Настройка переменных среды (в PowerShell)
 
-Перед запуском скрипта укажите свои пути к установленным Java, Hadoop и Python:
+Перед запуском скрипта укажите **свои** пути к установленным Java, Hadoop и Python:
 
 $env:JAVA_HOME = "<ПУТЬ_К_ВАШЕЙ_JAVA_11>"
 $env:HADOOP_HOME = "<ПУТЬ_К_ВАШЕМУ_HADOOP>"
@@ -63,17 +63,34 @@ $env:Path += ";C:\hadoop\bin"
 $env:PYSPARK_PYTHON = "C:\python310.exe"
 $env:PYSPARK_DRIVER_PYTHON = "C:\python310.exe"
 
-> **Важно:**  
-> Если ваш Python установлен в папке с пробелами (например, в `C:\Program Files\Python310\`), создайте символическую ссылку для удобства:  
->  
-> Откройте PowerShell от имени администратора и выполните:  
-> ```
-> cmd /c mklink "C:\python310.exe" "<ПУТЬ_К_ВАШЕМУ_PYTHON.EXE>"
-> ```
-> Например:  
-> ```
-> cmd /c mklink "C:\python310.exe" "C:\Program Files\Python310\python.exe"
-> ```
+**Проверьте правильность написания путей к переменным среды с помощью команд в терминале:**
+
+echo $env:JAVA_HOME
+echo $env:HADOOP_HOME
+echo $env:PYSPARK_PYTHON
+---
+
+**Важно:**  
+Пути к Java, Python и Hadoop могут отличаться на вашем компьютере.  
+Везде, где в инструкции указан путь, используйте свой путь к установленному ПО.
+
+Как узнать путь к Python:
+- В PowerShell: `Get-Command python`
+- Или найдите файл python.exe через Проводник.
+
+Как узнать путь к Java:
+- Найдите папку, где лежит папка bin с java.exe (например, `C:\Program Files\Eclipse Adoptium\jdk-11.0.27.6-hotspot`)
+
+**Если ваш Python установлен в папке с пробелами (например, в `C:\Program Files\Python310\`), создайте символическую ссылку для удобства:**  
+Откройте PowerShell от имени администратора и выполните:  
+```
+cmd /c mklink "C:\python310.exe" "<ПУТЬ_К_ВАШЕМУ_PYTHON.EXE>"
+```
+Например:  
+```
+cmd /c mklink "C:\python310.exe" "C:\Program Files\Python310\python.exe"
+```
+После этого используйте `C:\python310.exe` в переменных среды.
 
 ---
 
@@ -84,7 +101,6 @@ $env:PYSPARK_DRIVER_PYTHON = "C:\python310.exe"
     ```
     python task2\pyspark_solution.py
     ```
-
 ---
 
 ### 5. Ожидаемый результат
@@ -101,7 +117,6 @@ $env:PYSPARK_DRIVER_PYTHON = "C:\python310.exe"
 |Apple |Vegetable |
 |Carrot |Vegetable |
 +------------+-------------+
-
 ---
 
 ## Как запустить решение Задания 1 (Python-библиотека)
@@ -117,13 +132,6 @@ $env:PYSPARK_DRIVER_PYTHON = "C:\python310.exe"
 
 ## Примечания
 
-- Пути к Java, Python и Hadoop могут отличаться на вашем компьютере.  
-- Везде, где в инструкции указан путь, используйте свой путь к установленному ПО.  
-- Как узнать путь к Python:  
-  - В PowerShell: `Get-Command python`  
-  - Или найдите файл python.exe через Проводник.  
-- Как узнать путь к Java:  
-  - Найдите папку, где лежит папка bin с java.exe (например, `C:\Program Files\Eclipse Adoptium\jdk-11.0.27.6-hotspot`)  
 - Для корректной работы PySpark на Windows важно, чтобы пути к проекту и Python не содержали кириллицы и пробелов.  
 - Если что-то не запускается — внимательно проверьте переменные среды и версии ПО.
 
